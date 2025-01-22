@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mouse Position Practice</title>
+    <style>
+        #target {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="startGame()">replay</button>
+    <p id="score">Score: 0</p>
+    <div id="target"></div>
+
+    <script>
+        let score = 0;
+        let target = document.getElementById('target');
+        let scoreDisplay = document.getElementById('score');
+
+        function startGame() {
+            score = 0;
+            scoreDisplay.innerHTML = 'Score: ' + score;
+            moveTarget();
+        }
+
+        function moveTarget() {
+            let x = Math.random() * (window.innerWidth - target.offsetWidth);
+            let y = Math.random() * (window.innerHeight - target.offsetHeight);
+            target.style.left = x + 'px';
+            target.style.top = y + 'px';
+        }
+
+        target.onclick = function() {
+            score++;
+            scoreDisplay.innerHTML = 'Score: ' + score;
+            moveTarget();
+        }
+
+    </script>
+</body>
+</html>

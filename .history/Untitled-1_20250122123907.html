@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FPS 鼠标定位练习</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #333;
+    cursor: none; /* 隐藏默认光标 */
+  }
+  #crosshair {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+  }
+  #target {
+    width: 50px;
+    height: 50px;
+    background-color: green;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+</style>
+</head>
+<body>
+<div id="crosshair"></div>
+<div id="target"></div>
+
+<script>
+  const crosshair = document.getElementById('crosshair');
+  const target = document.getElementById('target');
+
+  document.addEventListener('mousemove', (e) => {
+    crosshair.style.left = `${e.clientX - 5}px`;
+    crosshair.style.top = `${e.clientY - 5}px`;
+
+    const targetRect = target.getBoundingClientRect();
+    const crosshairRect = crosshair.getBoundingClientRect();
+
+    if (
+      crosshairRect.left < targetRect.right &&
+      crosshairRect.right > targetRect.left &&
+      crosshairRect.top < targetRect.bottom &&
+      crosshairRect.bottom > targetRect.top
+    ) {
+      target.style.backgroundColor = 'yellow';
+    } else {
+      target.style.backgroundColor = 'green';
+    }
+  });
+
+  document.addEventListener('click', () => {
+    if (target.style.backgroundColor === 'yellow') {
+      alert('目标被击中！');
+      resetTarget();
+    } else {
+      alert('未击中目标！');
+    }
+  });
+
+  function resetTarget() {
+    const maxX = window.innerWidth - target.offsetWidth;
+    const maxY = window.innerHeight - target.offsetHeight;
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+
+    target.style.left = `${randomX}px`;
+    target.style.top = `${randomY}px`;
+    target.style.backgroundColor = 'green';
+  }
+
+  resetTarget();
+</script>
+</body>
+</html>
