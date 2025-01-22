@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPS 鼠标定位练习</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>游戏设置</h2>
+            <label for="timeSelect">时间设定（秒）:</label>
+            <select id="timeSelect">
+                <option value="30" selected>30秒</option>
+                <option value="60">60秒</option>
+                <option value="90">90秒</option>
+                <option value="120">120秒</option>
+            </select>
+            <label for="sizeSelect">标靶大小设定:</label>
+            <select id="sizeSelect">
+                <option value="50" selected>大</option>
+                <option value="30">中</option>
+                <option value="20">小</option>
+            </select>
+            <label for="speedInput">速度设定（毫秒）:</label>
+            <input type="number" id="speedInput" value="1000">
+            <label for="autoSaveHighScore">自动保存最高分:</label>
+            <input type="checkbox" id="autoSaveHighScore" checked>
+            <label for="soundEffects">音效:</label>
+            <input type="checkbox" id="soundEffects" checked>
+            <button id="startButton">开始游戏</button>
+        </div>
+    </div>
+    <div id="score">分数: 0</div>
+    <div id="highScore">最高分: 0</div>
+    <div id="timer">时间: 30秒</div>
+    <div id="target"></div>
+    <!-- 添加音效元素 -->
+    <audio id="hitSound" src="path/to/hit_sound.mp3"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
+
